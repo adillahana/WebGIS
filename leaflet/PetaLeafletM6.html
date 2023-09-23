@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaflet Web Map</title>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" />
+	<script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"></script>
+	
+	<!-- memanggil bootstrap -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+	<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+	<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+	
+	<script src="./bundle.js"></script>
+	
+	<link rel="stylesheet" type="text/css" href="./Leaflet.GraphicScale.min.css">
+	
+	<script src="./Leaflet.GraphicScale.min.js"></script>
+
+	
+	<style>
+	#map {
+		height: calc(100vh - 60px);
+	}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+      </li>
+     
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <button 
+	    class="btn btn-outline-success my-2 my-sm-0" 
+		onclick="cari()"
+		>
+		   Lokasi saya
+	  </button>
+    </form>
+  </div>
+</nav>
+	<!-- container peta -->
+	<div id="map"></div>
+	
+	<!-- script peta -->
+	
+    <script>
+	var map = L.map('map',{
+        center:[ -0.030456, 109.342110],
+        zoom: 13
+        });
+		
+	var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+	}).addTo(map);
+	
+	var carto = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}{r}.png', {
+	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+	subdomains: 'abcd',
+	maxZoom: 19
+	});
+	
+
+	var bengkayang = L.marker([ 1.071809, 109.663923]).
+	bindPopup('<center><p>Kabupaten Bengkayang</p></center>').addTo(map);
+	var kapuashulu = L.marker([  0.812838,112.996064]).
+	bindPopup('<center><p>Kabupaten Kapuas Hulu</p></center>').addTo(map);
+	var kayongutara = L.marker([ -0.922455, 110.045570]).
+	bindPopup('<center><p>Kabupaten Kayong utara</p></center>').addTo(map);
+	var pontianak = L.marker([ -0.022825,109.329436]).
+	bindPopup('<center><p>Kota Pontianak</p></center>').addTo(map);
+	var mempawah = L.marker([ 0.364243,108.954919]).
+	bindPopup('<center><p>Kabupaten Mempawah</p></center>').addTo(map);
+	var kuburaya = L.marker([  -0.483740,109.378888]).
+	bindPopup('<center><p>Kabupaten Kubu Raya</p></center>').addTo(map);
+	var ketapang = L.marker([ -1.571262,110.521000]).
+	bindPopup('<center><p>Kabupaten Ketapang</p></center>').addTo(map);
+	var singkawang = L.marker([ 0.904308,108.987327]).
+	bindPopup('<center><p>Kota Singkawang</p></center>').addTo(map);
+	var landak = L.marker([ 0.420864,109.759766]).
+	bindPopup('<center><p>Kabupaten Landak</p></center>').addTo(map);
+	var melawi = L.marker([ -0.704900,111.665092]).
+	bindPopup('<center><p>Kabupaten Melawi</p></center>').addTo(map);
+	var sanggau = L.marker([  0.136696,110.521619]).
+	bindPopup('<center><p>Kabupaten Sanggau</p></center>').addTo(map);
+	var sekadau = L.marker([ -0.073378,111.000069]).
+	bindPopup('<center><p>Kabupaten Sekadau</p></center>').addTo(map);
+	var bengkayang = L.marker([ 1.065002,109.663590]).
+	bindPopup('<center><p>Kabupaten Bengkayang</p></center>').addTo(map);
+	var sambas = L.marker([  1.361148,109.283291]).
+	bindPopup('<center><p>Kabupaten Sambas</p></center>').addTo(map);
+
+	var tugu1 = L.marker([-0.055329, 109.349492]).bindPopup('<center><h2>Monumen Sebelas Digulis</h2><justify>Monumen Sebelas Digulis Kalimantan Barat, disebut juga sebagai Tugu Digulis atau Tugu Bambu Runcing atau Tugu Bundaran Untan oleh warga setempat, merupakan sebuah monumen yang terletak di Bundaran Universitas Tanjungpura, Jalan Jend. Ahmad Yani, Kelurahan Bansir Laut, Kecamatan Pontianak Tenggara, Kota Pontianak.<br><br><img src="https://insidepontianak.com/wp-content/uploads/2023/07/WhatsApp-Image-2023-07-22-at-09.55.57-1.jpeg" width="150px" height="100px"></center>'),
+		tugu2 = L.marker([0.001050, 109.322233]).bindPopup('<center><h2>Tugu Khatulistiwa</h2><justify>Tugu Khatulistiwa atau Equator Monument berada di Jalan Khatulistiwa, Pontianak Utara, Provinsi Kalimantan Barat. Tugu ini menjadi salah satu ikon wisata Kota Pontianak dan selalu dikunjungi masyarakat, khususnya wisatawan yang datang ke Kota Pontianak.<br><br><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSzfcAbCn4B5sOzfPzIOhy1AYBFfBMtHK79oQ&usqp=CAU" width="150px" height="100px"></center>'),
+		keraton = L.marker([ -0.028867, 109.349894]).bindPopup('<center><h2>Keraton Kadariah</h2><justify>Keraton Kadariah (Keraton Qadriah) adalah istana Kesultanan Pontianak yang dibangun pada dari tahun 1771 sampai 1778 masehi. Sayyid Syarif Abdurrahman Al-qadrie adalah sultan pertama yang mendiami istana tersebut. Keraton ini berada di dekat pusat Kota Pontianak, Kalimantan Barat. Sebagai cikal-bakal lahirnya Kota Pontianak, Keraton Qadriah menjadi salah satu objek wisata sejarah.<br><br><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjl5vYED7qn5BYdtLJ2iZI5xbVuOybX86Owg&usqp=CAU" width="150px" height="100px"></center>');
+
+	var tempat = L.layerGroup([tugu1, tugu2, keraton]);
+	
+	var baseMaps = {
+		"Citra Satelit": esri,
+		"Peta Carto": carto
+	};
+	
+	var overlayMaps = {
+		"Tempat-Tempat Bersejarah": tempat
+	};
+
+	L.control.layers(baseMaps, overlayMaps).addTo(map);
+	
+	
+	L.Control.geocoder().addTo(map);
+	
+	L.easyPrint({
+		title: 'My awesome print button',
+		position: 'topright',
+		sizeModes: ['A4Portrait', 'A4Landscape']
+	}).addTo(map);
+	
+	
+	var graphicScale = L.control.graphicScale({
+		fill: "fill",
+		doubleLine: "true",
+		showSubunits: "true"
+	}).addTo(map);
+	
+	
+	function cari(){
+		alert('tombol ditekan!');
+		map.locate({setView: true, maxZoom: 16});
+		
+		function onLocationFound(e) {
+			var radius = e.accuracy / 2;
+
+			L.marker(e.latlng).addTo(map)
+				.bindPopup("You are within " + radius + " meters from this point").openPopup();
+
+			L.circle(e.latlng, radius).addTo(map);
+		}
+
+		map.on('locationfound', onLocationFound);
+		
+	}
+	</script>
+
+	<script src="../leaflet/kalbar.js"></script>
+	
+	<script>
+	L.geoJSON(kalbargeojson,{
+		style: function(feature) {
+			switch (feature.properties.KAB_KOTA) {
+				case 'KOTA PONTIANAK': return {color: "#ff9900"};
+				case 'MEMPAWAH':   return {color: "red"};
+				case 'KUBU RAYA':   return {color: "blue"};
+				case 'KETAPANG':   return {color: "green"};
+				case 'KAYONG UTARA':   return {color: "magenta"};
+				case 'KAPUAS HULU' :  return {color: "coral"}
+				case 'KOTA SINGKAWANG' :  return {color: "	#00FFFF"}
+				case 'LANDAK' :  return {color: "#B22222"}
+				case 'MELAWI' :  return {color: "#ADFF2F"}
+				case 'SAMBAS' :  return {color: "#F0E68C"}
+				case 'SEKADAU' :  return {color: "#A52A2Al"}
+				case 'SINTANG' :  return {color: "#B8860B"}
+				case 'SANGGAU' :  return {color: "#483D8B"}
+				case 'BENGKAYANG' :  return {color: "#FF1493"}
+			}
+		},
+		onEachFeature: function (feature, layer) {
+			layer.bindPopup(
+			'Kabupaten adalah ' + 
+			'<strong>' +
+			feature.properties.KAB_KOTA +
+			'</strong>'
+			);
+		}
+	}).addTo(map);
+	
+	
+    </script>
+</body>
+</html>
